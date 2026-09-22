@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import HeroSection from "../sections/HeroSection.astro";
+import PortfolioSection from "../sections/PortfolioSection.astro";
+import TestimonialSection from "../sections/TestimonialSection.astro";
+import ContactSection from "../sections/ContactSection.astro";
+import AboutSection from "../sections/AboutSection.astro";
+---
+
+<BaseLayout
+  title="Sthefani Pozzer"
+  description="Fotografia autoral, direção artística e experiências visuais construídas com intenção."
+>
+  <main>
+    <!--
+      INTRO EXPERIENCE
+
+      Hero e Portfolio compartilham o mesmo canvas estável.
+      O Hero fica na frente e sobe para revelar o Portfolio.
+    -->
+    <div class="intro-master" data-intro-master>
+      <div class="intro-panel intro-panel--portfolio" data-intro-portfolio-panel>
+        <PortfolioSection />
+      </div>
+
+      <div class="intro-panel intro-panel--hero" data-intro-hero-panel>
+        <HeroSection />
+      </div>
+    </div>
+
+    <!-- Fluxo normal após a Intro -->
+    <TestimonialSection />
+    <ContactSection />
+    <AboutSection />
+  </main>
+</BaseLayout>
+
+<script>
+  import { initPageAnimations } from "../scripts/pageAnimations.js";
+
+  initPageAnimations();
+</script>
+
+<style>
+  .intro-master,
+  .intro-panel {
+    position: relative;
+    width: 100%;
+  }
+
+  .intro-master.is-enhanced {
+    position: relative;
+    width: 100%;
+    height: var(--intro-canvas-height, 100svh);
+    overflow: visible;
+    isolation: isolate;
+  }
+
+  .intro-master.is-enhanced .intro-panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: var(--intro-canvas-height, 100svh);
+    min-height: 0;
+  }
+
+  .intro-master.is-enhanced .intro-panel--portfolio {
+    z-index: var(--z-base);
+    overflow: visible;
+    background: var(--color-deep);
+  }
+
+  .intro-master.is-enhanced .intro-panel--portfolio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100dvh;
+    background: var(--color-deep);
+    pointer-events: none;
+  }
+
+  .intro-master.is-enhanced .intro-panel--hero {
+    z-index: var(--z-content);
+    height: 100dvh;
+    background: var(--color-deep);
+  }
+
+  @media (min-width: 48rem) {
+    .intro-master.is-enhanced {
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    .intro-master.is-enhanced .intro-panel {
+      height: 100%;
+      min-height: 0;
+    }
+
+    .intro-master.is-enhanced .intro-panel--portfolio::before {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,500 @@
+---
+import { heroData } from "../data/heroData.js";
+import { portfolioData } from "../data/portfolioData.js";
+import { assetPath } from "../lib/assets.js";
+---
+
+<section
+  class="hero-stage"
+  data-hero-stage
+  aria-label="Apresentação principal"
+>
+  <div class="hero-intro">
+    <div class="hero-media" aria-hidden="true">
+      <img
+        class="hero-poster"
+        src={assetPath(heroData.media.poster)}
+        alt=""
+        width="720"
+        height="1280"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+
+      <video
+        class="hero-video"
+        data-hero-video
+        data-mobile-src={assetPath(heroData.media.mobileMp4)}
+        data-desktop-src={assetPath(heroData.media.desktop)}
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="none"
+        disablepictureinpicture
+        disableRemotePlayback
+      ></video>
+
+      <div class="hero-overlay" data-hero-overlay></div>
+    </div>
+
+    <div class="hero-content" data-hero-content>
+      <h1 class="hero-title" data-hero-item>
+        <span class="hero-title__first-line type-display">
+          {heroData.title.firstLine}
+        </span>
+
+        <span class="hero-title__second-line">
+          <span class="hero-title__signature type-script">
+            {heroData.title.accent}
+          </span>
+
+          <span class="hero-title__second-text type-display">
+            {heroData.title.secondLine}
+          </span>
+        </span>
+      </h1>
+
+      <p class="hero-description type-body" data-hero-lcp>
+        {heroData.description}
+      </p>
+
+      <div data-hero-item>
+        <a class="hero-cta" href={heroData.cta.href}>
+          {heroData.cta.label}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      O segundo texto continua pertencendo ao Hero.
+      Ele apresenta o Portfolio antes de o painel do Hero subir,
+      preservando a leitura/animação que já existia sem voltar
+      a acoplar a galeria ao HeroSection.
+    -->
+    <header
+      class="portfolio-intro"
+      data-portfolio-intro
+      aria-hidden="true"
+    >
+      <div class="portfolio-intro__glass" aria-hidden="true"></div>
+
+      <div class="portfolio-intro__inner">
+        <p class="portfolio-intro__title type-display">
+          {portfolioData.title}
+        </p>
+
+        <p class="portfolio-intro__eyebrow type-eyebrow">
+          {portfolioData.eyebrow}
+        </p>
+      </div>
+    </header>
+</section>
+
+<style>
+  .hero-stage {
+    position: relative;
+    width: 100%;
+    background: var(--color-deep);
+    color: var(--color-light);
+  }
+
+  .hero-intro {
+    position: relative;
+    display: grid;
+    width: 100%;
+    min-height: 100svh;
+    place-items: center;
+    overflow: hidden;
+    background: var(--color-deep);
+  }
+
+  /* Hero media */
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--color-deep);
+  }
+
+  .hero-poster,
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-poster {
+    z-index: 0;
+    opacity: 1;
+    transition: opacity 220ms ease;
+  }
+
+  .hero-video {
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+  }
+
+  .hero-media.is-video-playing .hero-video {
+    opacity: 1;
+  }
+
+  .hero-media.is-video-playing .hero-poster {
+    opacity: 0;
+  }
+
+  .hero-video::-webkit-media-controls,
+  .hero-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+  }
+
+  /* Hero copy */
+  .hero-content {
+    position: relative;
+    z-index: var(--z-content);
+    display: grid;
+    width: min(92%, 48rem);
+    justify-items: center;
+    gap: 1.65rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-title {
+    display: grid;
+    width: min(96vw, 40rem);
+    max-width: none;
+    place-items: center;
+    justify-self: center;
+    gap: 0.48rem;
+    margin-inline: auto;
+    color: var(--color-light);
+    text-align: center;
+  }
+
+  .hero-title__first-line {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+    font-size: clamp(1.95rem, 8.4vw, 2.85rem);
+    line-height: 0.9;
+    word-spacing: -0.08em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .hero-title__second-line {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.28em;
+    margin-inline: auto;
+    overflow: visible;
+    white-space: nowrap;
+  }
+
+  .hero-title__signature {
+    position: relative;
+    top: 0.04em;
+    display: inline-block;
+    padding-bottom: 0.28em;
+    margin-bottom: -0.28em;
+    overflow: visible;
+    color: var(--color-light);
+    font-size: clamp(2.2rem, 8.8vw, 3rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .hero-title__second-text {
+    display: inline-block;
+    font-size: clamp(2.15rem, 8.7vw, 3.05rem);
+    line-height: 0.88;
+    word-spacing: -0.12em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .hero-description {
+    width: calc(100% - (var(--copy-gutter) * 2));
+    max-width: 25rem;
+    margin: 0 auto;
+    color: rgba(246, 244, 240, 0.68);
+    font-size: clamp(0.74rem, 2.7vw, 0.86rem);
+    line-height: 1.9;
+    letter-spacing: 0.012em;
+    text-wrap: pretty;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(246, 244, 240, 0.5);
+    background: transparent;
+    color: var(--color-light);
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition:
+      background-color var(--duration-normal) var(--ease-premium),
+      border-color var(--duration-normal) var(--ease-premium),
+      color var(--duration-normal) var(--ease-premium);
+  }
+
+  .hero-cta:focus-visible {
+    border-color: var(--color-light);
+    background: var(--color-light);
+    color: var(--color-dark);
+    outline: 2px solid var(--color-gold);
+    outline-offset: 4px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero-cta:hover {
+      border-color: var(--color-light);
+      background: var(--color-light);
+      color: var(--color-dark);
+    }
+  }
+
+  /* Texto 2 / introdução do Portfolio */
+  .portfolio-intro {
+    display: grid;
+    width: 100%;
+    min-height: 42svh;
+    place-items: center;
+    padding: 3rem var(--page-inline);
+    background: var(--color-deep);
+    text-align: center;
+  }
+
+  .portfolio-intro__glass {
+    display: none;
+  }
+
+  .portfolio-intro__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 0.9rem;
+  }
+
+  .portfolio-intro__title {
+    color: var(--color-light);
+    font-size: clamp(3rem, 12vw, 4.5rem);
+    line-height: 0.9;
+  }
+
+  .portfolio-intro__eyebrow {
+    color: var(--color-gold);
+  }
+
+  /* Enhanced intro: geometria controlada pelo master canvas */
+  .hero-stage.is-enhanced {
+    position: relative;
+    width: 100%;
+    height: var(--intro-canvas-height, 100%);
+    overflow: visible;
+  }
+
+  .hero-stage.is-enhanced .hero-intro {
+    position: absolute;
+    inset: 0;
+    display: block;
+    min-height: 0;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .hero-stage.is-enhanced .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: var(--z-content);
+    margin: 0;
+    translate: -50% -50%;
+  }
+
+  .hero-stage.is-enhanced .portfolio-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 30;
+    width: min(90%, 56.25rem);
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    translate: -50% -50%;
+  }
+
+  @media (max-width: 47.999rem) {
+    .hero-stage.is-enhanced .hero-media {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: 0;
+      width: 100%;
+      height: 100dvh;
+    }
+
+    .hero-stage.is-enhanced .portfolio-intro {
+      width: 100dvw;
+      max-width: none;
+      height: 19%;
+      place-items: center;
+      overflow: visible;
+      box-sizing: border-box;
+    }
+
+    .hero-stage.is-enhanced .portfolio-intro__glass {
+      position: absolute;
+      top: -2px;
+      right: 0;
+      bottom: -3px;
+      left: 0;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(9, 9, 9, 0) 0%,
+        rgba(9, 9, 9, 0.22) 8%,
+        rgba(9, 9, 9, 0.32) 24%,
+        rgba(9, 9, 9, 0.26) 46%,
+        rgba(9, 9, 9, 0.13) 70%,
+        rgba(9, 9, 9, 0.035) 88%,
+        transparent 100%
+      );
+      -webkit-backdrop-filter: blur(7px) saturate(0.94);
+      backdrop-filter: blur(7px) saturate(0.94);
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.58) 7%,
+        #000 16%,
+        #000 34%,
+        rgba(0, 0, 0, 0.88) 50%,
+        rgba(0, 0, 0, 0.58) 68%,
+        rgba(0, 0, 0, 0.22) 84%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.58) 7%,
+        #000 16%,
+        #000 34%,
+        rgba(0, 0, 0, 0.88) 50%,
+        rgba(0, 0, 0, 0.58) 68%,
+        rgba(0, 0, 0, 0.22) 84%,
+        transparent 100%
+      );
+    }
+
+    .hero-stage.is-enhanced .portfolio-intro__inner {
+      width: min(90vw, 56.25rem);
+      place-items: center;
+      align-content: center;
+      gap: 0.7rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .hero-stage.is-enhanced {
+      overflow: hidden;
+    }
+
+    .hero-content {
+      width: min(92%, 78rem);
+      gap: 2.35rem;
+    }
+
+    .hero-stage.is-enhanced .hero-content {
+      right: 0;
+      left: 0;
+      width: 100%;
+      max-width: none;
+      padding-inline: var(--page-inline);
+      translate: 0 -50%;
+    }
+
+    .hero-title {
+      width: min(82vw, 60rem);
+      max-width: 60rem;
+      justify-self: center;
+      gap: clamp(0.5rem, 1vh, 0.75rem);
+      margin-inline: auto;
+    }
+
+    .hero-title__first-line {
+      justify-self: center;
+      font-size: clamp(3.8rem, 4.7vw, 5.35rem);
+    }
+
+    .hero-title__second-line {
+      justify-self: center;
+      gap: clamp(0.5rem, 0.7vw, 0.7rem);
+      margin-inline: auto;
+    }
+
+    .hero-title__signature {
+      top: 0.025em;
+      padding-bottom: 0.3em;
+      margin-bottom: -0.3em;
+      font-size: clamp(3.7rem, 4.45vw, 5rem);
+    }
+
+    .hero-title__second-text {
+      font-size: clamp(3.85rem, 4.65vw, 5.25rem);
+    }
+
+    .hero-description {
+      max-width: 35rem;
+      font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+      line-height: 1.95;
+    }
+
+    .portfolio-intro__title {
+      font-size: clamp(3.7rem, 4.6vw, 5.2rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cta,
+    .hero-poster,
+    .hero-video {
+      transition: none;
+    }
+  }
+</style>

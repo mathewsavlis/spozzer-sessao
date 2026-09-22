@@ -1,0 +1,184 @@
+---
+import { portfolioData } from "../data/portfolioData.js";
+import { assetPath } from "../lib/assets.js";
+
+const layout = [
+  "tall",
+  "tall",
+  "wide",
+  "tall",
+  "wide",
+  "tall",
+  "tall",
+  "wide",
+];
+---
+
+<section
+  id="portfolio"
+  class="portfolio-stage"
+  data-portfolio-stage
+  aria-labelledby="portfolio-grid-title"
+>
+  <h2 id="portfolio-grid-title" class="visually-hidden">
+    Portfólio fotográfico
+  </h2>
+
+  <div class="portfolio-viewport" data-portfolio-viewport>
+    <div class="portfolio-grid" data-portfolio-grid>
+      {
+        portfolioData.items.map((item, index) => (
+          <figure
+            class={`portfolio-grid__item portfolio-grid__item--${layout[index] ?? "tall"}`}
+          >
+            <img
+              class="portfolio-grid__image"
+              src={assetPath(item.image)}
+              alt={item.title}
+              width="1600"
+              height="2400"
+              loading="lazy"
+              fetchpriority="low"
+              decoding="async"
+            />
+          </figure>
+        ))
+      }
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .portfolio-stage {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--color-deep);
+    color: var(--color-light);
+  }
+
+  .portfolio-viewport {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--color-deep);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: clamp(11rem, 42vw, 17rem);
+    grid-auto-flow: dense;
+    width: 100%;
+    min-width: 0;
+    background: var(--color-deep);
+  }
+
+  .portfolio-grid__item {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .portfolio-grid__item--tall {
+    grid-row: span 2;
+  }
+
+  .portfolio-grid__item--wide {
+    grid-row: span 1;
+  }
+
+  .portfolio-grid__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: translateZ(0);
+  }
+
+
+
+  /*
+   * No modo enhanced o painel continua com a geometria estável da Intro.
+   * Apenas a superfície visual cobre 100dvh para não expor uma faixa
+   * quando as barras do Safari aparecem/desaparecem.
+   */
+  .portfolio-stage.is-enhanced {
+    height: var(--intro-canvas-height, 100%);
+    min-height: 0;
+    overflow: visible;
+    contain: layout;
+    isolation: isolate;
+  }
+
+  .portfolio-stage.is-enhanced .portfolio-viewport {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-deep);
+  }
+
+  .portfolio-stage.is-enhanced .portfolio-grid {
+    will-change: transform;
+  }
+
+  @media (min-width: 48rem) {
+    .portfolio-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: clamp(13rem, 22vw, 25rem);
+    }
+
+    .portfolio-grid__item:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .portfolio-grid__item:nth-child(2) {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    .portfolio-grid__item:nth-child(3) {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .portfolio-grid__item:nth-child(4) {
+      grid-column: 4;
+      grid-row: 1 / span 2;
+    }
+
+    .portfolio-grid__item:nth-child(5) {
+      grid-column: 3;
+      grid-row: 2 / span 2;
+    }
+
+    .portfolio-grid__item:nth-child(6) {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .portfolio-grid__item:nth-child(7) {
+      grid-column: 2;
+      grid-row: 3 / span 2;
+    }
+
+    .portfolio-grid__item:nth-child(8) {
+      grid-column: 4;
+      grid-row: 3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portfolio-stage.is-enhanced .portfolio-grid {
+      will-change: auto;
+    }
+  }
+</style>
