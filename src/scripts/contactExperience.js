@@ -442,6 +442,13 @@ export function initContactExperience({
             ) ?? ""
           ),
 
+        location:
+          String(
+            formData.get(
+              "location"
+            ) ?? ""
+          ),
+
         website:
           String(
             formData.get(

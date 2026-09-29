@@ -6,6 +6,16 @@ const PHONE_PATTERN =
   /^\d{10,15}$/;
 
 
+/*
+ * Precisa coincidir com LEAD_LOCATIONS
+ * no Worker (byspozzer-api).
+ */
+const LOCATIONS = [
+  "sao_paulo",
+  "florianopolis",
+];
+
+
 export function normalizePhone(
   value
 ) {
@@ -58,6 +68,18 @@ export function validateLead(
 
     errors.phone =
       "Informe um WhatsApp válido com DDD.";
+
+  }
+
+
+  if (
+    !LOCATIONS.includes(
+      data.location
+    )
+  ) {
+
+    errors.location =
+      "Selecione onde deseja a sua experiência.";
 
   }
 
