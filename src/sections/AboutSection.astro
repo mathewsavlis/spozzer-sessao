@@ -1,8 +1,15 @@
 ---
 import { aboutData } from "../data/aboutData.js";
-import { assetPath } from "../lib/assets.js";
+import { assetPath, assetSrcset } from "../lib/assets.js";
 
 const [primaryImage, secondaryImage] = aboutData.images;
+
+/*
+ * .about-media: 32svh × 4/5 no mobile, 60dvh × 4/5 no desktop.
+ * A foto (2:3) é mais estreita que o quadro (4:5),
+ * então a largura do quadro define o recorte.
+ */
+const imageSizes = "(min-width: 48rem) 48vh, 26vh";
 ---
 
 <section
@@ -17,6 +24,8 @@ const [primaryImage, secondaryImage] = aboutData.images;
         <img
           class="about-image about-image--primary"
           src={assetPath(primaryImage.src)}
+          srcset={assetSrcset(primaryImage.src)}
+          sizes={imageSizes}
           alt={primaryImage.alt}
           width="800"
           height="1000"
@@ -28,6 +37,8 @@ const [primaryImage, secondaryImage] = aboutData.images;
         <img
           class="about-image about-image--secondary"
           src={assetPath(secondaryImage.src)}
+          srcset={assetSrcset(secondaryImage.src)}
+          sizes={imageSizes}
           alt=""
           width="800"
           height="1000"

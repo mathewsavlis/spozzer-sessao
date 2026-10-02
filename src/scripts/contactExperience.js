@@ -897,6 +897,25 @@ export function initContactExperience({
                 }
 
 
+                /*
+                 * Reveal one-shot: libera as
+                 * camadas de composição ao final.
+                 */
+                timeline.set(
+                  [
+                    eyebrow,
+                    title,
+                    description,
+                    ...fields,
+                    footer,
+                  ].filter(Boolean),
+                  {
+                    willChange:
+                      "auto",
+                  }
+                );
+
+
                 return;
               }
 

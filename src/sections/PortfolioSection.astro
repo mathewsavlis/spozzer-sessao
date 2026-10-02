@@ -1,6 +1,15 @@
 ---
 import { portfolioData } from "../data/portfolioData.js";
-import { assetPath } from "../lib/assets.js";
+import { assetPath, assetSrcset } from "../lib/assets.js";
+
+/*
+ * Largura renderizada no pior caso, já considerando
+ * o recorte do object-fit: cover nas células altas.
+ * Mobile: 2 colunas, linhas com mínimo de 11rem.
+ * Desktop: 4 colunas, células altas de até 44vw.
+ */
+const imageSizes =
+  "(min-width: 48rem) 30vw, (max-width: 419px) 235px, 60vw";
 
 const layout = [
   "tall",
@@ -34,6 +43,8 @@ const layout = [
             <img
               class="portfolio-grid__image"
               src={assetPath(item.image)}
+              srcset={assetSrcset(item.image)}
+              sizes={imageSizes}
               alt={item.title}
               width="1600"
               height="2400"

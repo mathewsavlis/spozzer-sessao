@@ -10,16 +10,35 @@ import "@fontsource/italianno/400.css";
 
 import "../styles/global.css";
 
+/*
+ * Mesmos arquivos (latin) já referenciados pelos
+ * @font-face acima — o Vite emite um único asset.
+ */
+import cormorant300Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-normal.woff2?url";
+import italianno400Url from "@fontsource/italianno/files/italianno-latin-400-normal.woff2?url";
+import montserrat300Url from "@fontsource/montserrat/files/montserrat-latin-300-normal.woff2?url";
+
 interface Props {
   title?: string;
   description?: string;
+  preloadIntroFonts?: boolean;
 }
 
 const {
   title = "Sthefani Pozzer | Fotografia",
   description =
     "Fotografia autoral, editorial e experiências visuais construídas com intenção.",
+  preloadIntroFonts = false,
 } = Astro.props;
+
+/*
+ * A entrada do Hero aguarda essas três fontes
+ * (introExperience.js). Pré-carregar evita que
+ * o download só comece após o parse do CSS.
+ */
+const introFonts = preloadIntroFonts
+  ? [cormorant300Url, italianno400Url, montserrat300Url]
+  : [];
 ---
 
 <!doctype html>
@@ -32,6 +51,18 @@ const {
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
+
+    {
+      introFonts.map((href) => (
+        <link
+          rel="preload"
+          href={href}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      ))
+    }
 
     <!-- =========================================
          GOOGLE TAG MANAGER

@@ -177,6 +177,18 @@ export function initTestimonials() {
 
 
   /*
+   * Último estado gravado no DOM por card.
+   * render() roda a cada frame durante o drag;
+   * só escrevemos atributos quando mudam.
+   */
+  const cardStates =
+    cards.map(() => ({
+      ariaHidden: null,
+      pointerEvents: null,
+    }));
+
+
+  /*
    * =========================================
    * RENDER
    * =========================================
@@ -330,18 +342,50 @@ export function initTestimonials() {
             closestIndex;
 
 
-          card.setAttribute(
-            "aria-hidden",
+          const state =
+            cardStates[index];
+
+
+          const ariaHidden =
             isActive
               ? "false"
-              : "true"
-          );
+              : "true";
 
 
-          card.style.pointerEvents =
+          if (
+            state.ariaHidden !==
+            ariaHidden
+          ) {
+
+            card.setAttribute(
+              "aria-hidden",
+              ariaHidden
+            );
+
+            state.ariaHidden =
+              ariaHidden;
+
+          }
+
+
+          const pointerEvents =
             distance <= 1.1
               ? "auto"
               : "none";
+
+
+          if (
+            state.pointerEvents !==
+            pointerEvents
+          ) {
+
+            card.style.pointerEvents =
+              pointerEvents;
+
+            state.pointerEvents =
+              pointerEvents;
+
+          }
 
         }
       );
@@ -352,9 +396,20 @@ export function initTestimonials() {
         HTMLButtonElement
       ) {
 
-        previousButton.disabled =
+        const disabled =
           playhead.position <=
           0.001;
+
+
+        if (
+          previousButton.disabled !==
+          disabled
+        ) {
+
+          previousButton.disabled =
+            disabled;
+
+        }
 
       }
 
@@ -364,9 +419,20 @@ export function initTestimonials() {
         HTMLButtonElement
       ) {
 
-        nextButton.disabled =
+        const disabled =
           playhead.position >=
           lastIndex - 0.001;
+
+
+        if (
+          nextButton.disabled !==
+          disabled
+        ) {
+
+          nextButton.disabled =
+            disabled;
+
+        }
 
       }
 

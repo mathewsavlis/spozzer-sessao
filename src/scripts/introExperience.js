@@ -378,6 +378,15 @@ function initHeroVideoPlayback(
 
 
   /*
+   * Depois que o Hero sai da tela, o vídeo
+   * fica pausado para não disputar CPU/GPU
+   * com o scroll do restante da página.
+   */
+  let isInView =
+    true;
+
+
+  /*
    * =========================================
    * RESPONSIVE SOURCE
    * =========================================
@@ -521,7 +530,8 @@ function initHeroVideoPlayback(
     async () => {
       if (
         destroyed ||
-        document.hidden
+        document.hidden ||
+        !isInView
       ) {
         return false;
       }
@@ -619,17 +629,32 @@ function initHeroVideoPlayback(
     observer =
       new IntersectionObserver(
         (entries) => {
-          if (
-            entries[0]
-              ?.isIntersecting
-          ) {
+          const entry =
+            entries[entries.length - 1];
+
+          if (!entry) return;
+
+          isInView =
+            entry.isIntersecting;
+
+          if (isInView) {
             attemptPlay();
+
+            return;
+          }
+
+          /*
+           * Totalmente fora da viewport:
+           * pausa mantendo o frame atual.
+           */
+          if (!video.paused) {
+            video.pause();
           }
         },
 
         {
           threshold:
-            0.05,
+            0,
         }
       );
 

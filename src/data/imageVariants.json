@@ -1,0 +1,278 @@
+{
+  "/assets/imgs/portfolio/amanda.webp": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/amanda-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/amanda-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/portfolio/amanda-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/portfolio/anne.webp": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/anne-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/anne-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/portfolio/anne-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/portfolio/cecilia.webp": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/cecilia-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/cecilia-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/portfolio/cecilia-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/portfolio/izandra.webp": {
+    "width": 1170,
+    "height": 2080,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/izandra-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/izandra-800w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/portfolio/kellen.webp": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/kellen-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/kellen-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/portfolio/kellen-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/portfolio/mari.webp": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/mari-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/mari-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/portfolio/mari-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/portfolio/paula.webp": {
+    "width": 1200,
+    "height": 1800,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/paula-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/paula-800w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/portfolio/tati.webp": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/portfolio/tati-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/portfolio/tati-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/portfolio/tati-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/testimonials/amanda.webp": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/testimonials/amanda-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/testimonials/amanda-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/testimonials/amanda-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/testimonials/bruna.webp": {
+    "width": 1249,
+    "height": 2011,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/testimonials/bruna-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/testimonials/bruna-800w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/testimonials/cecilia.webp": {
+    "width": 2400,
+    "height": 1600,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/testimonials/cecilia-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/testimonials/cecilia-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/testimonials/cecilia-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/testimonials/gabriela.webp": {
+    "width": 1591,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/testimonials/gabriela-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/testimonials/gabriela-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/testimonials/gabriela-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/testimonials/iasmin.webp": {
+    "width": 1603,
+    "height": 2400,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/testimonials/iasmin-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/testimonials/iasmin-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/testimonials/iasmin-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/testimonials/kellen.webp": {
+    "width": 2400,
+    "height": 1600,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/testimonials/kellen-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/testimonials/kellen-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/testimonials/kellen-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/about/sth1.webp": {
+    "width": 2000,
+    "height": 3000,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/about/sth1-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/about/sth1-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/about/sth1-1200w.webp"
+      }
+    ]
+  },
+  "/assets/imgs/about/sth2.webp": {
+    "width": 2000,
+    "height": 3000,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/imgs/about/sth2-480w.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/imgs/about/sth2-800w.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/imgs/about/sth2-1200w.webp"
+      }
+    ]
+  }
+}

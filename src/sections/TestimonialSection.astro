@@ -1,6 +1,27 @@
 ---
 import { testimonials } from "../data/testimonialsData.js";
-import { assetPath } from "../lib/assets.js";
+import {
+  assetAspectRatio,
+  assetPath,
+  assetSrcset,
+} from "../lib/assets.js";
+
+/*
+ * Card central: até 310px (9:16) no mobile e
+ * 26vw (3:4) no desktop. Com object-fit: cover,
+ * fotos mais largas que o card são recortadas
+ * pela altura e precisam de mais pixels.
+ */
+function getImageSizes(path) {
+  const ratio = assetAspectRatio(path);
+
+  if (!ratio) return undefined;
+
+  const mobileFactor = Math.max(1, ratio * (16 / 9));
+  const desktopFactor = Math.max(1, ratio * (4 / 3));
+
+  return `(min-width: 48rem) calc(26vw * ${desktopFactor.toFixed(2)}), ${Math.ceil(310 * mobileFactor)}px`;
+}
 ---
 
 <section
@@ -38,6 +59,8 @@ import { assetPath } from "../lib/assets.js";
               {testimonial.image ? (
                 <img
                   src={assetPath(testimonial.image)}
+                  srcset={assetSrcset(testimonial.image)}
+                  sizes={getImageSizes(testimonial.image)}
                   alt=""
                   width="900"
                   height="1200"
