@@ -13,6 +13,7 @@ const PHONE_PATTERN =
 const LOCATIONS = [
   "sao_paulo",
   "florianopolis",
+  "amsterdam",
 ];
 
 
